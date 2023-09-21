@@ -1,7 +1,7 @@
 import { Link, Route, Routes } from 'react-router-dom';
 
 import Home from 'pages/Home';
-
+import MovieDetails from 'pages/MovieDetails';
 export const App = () => {
   return (
     <div>
@@ -15,10 +15,10 @@ export const App = () => {
       </ul>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<div>Movies</div>} />
-        <Route path="/movies/:movieId" />
-        <Route path="/movies/:movieId/cast" />
-        <Route path="/movies/:movieId/reviews" />
+        <Route path="movies" element={<div>Movies</div>} />
+        <Route path="movies/:movieId" element={<MovieDetails />} />
+        <Route path="movies/:movieId/cast" />
+        <Route path="movies/:movieId/reviews" />
       </Routes>
     </div>
   );

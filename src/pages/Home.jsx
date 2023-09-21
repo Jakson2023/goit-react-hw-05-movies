@@ -1,14 +1,15 @@
 import { serviceReq } from 'api';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const [title, setTitle] = useState([]);
-  console.log(title);
+  const [listFilms, setListFilms] = useState('');
+
   useEffect(() => {
     async function updateDate() {
       try {
         const filmTrendData = await serviceReq();
-        console.log(filmTrendData);
+        setListFilms(filmTrendData);
       } catch (error) {
         console.error('Error fetching images:', error);
       } finally {
@@ -20,7 +21,12 @@ export default function Home() {
     <div>
       <p>Trending today</p>
       <ul>
-        <li></li>
+        {listFilms &&
+          listFilms.results.map(({ title, id }) => (
+            <Link key={id} to={`movies/${id}`}>
+              {title}{' '}
+            </Link>
+          ))}
       </ul>
     </div>
   );
