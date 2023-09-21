@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchMovieId } from 'api';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [detailsFilm, setDetailsFilm] = useState('');
@@ -23,10 +23,9 @@ export default function MovieDetails() {
     <div>
       <div>
         <img
-          src={`https://api.themoviedb.org/3/movie/${movieId}/images`}
+          src={`https://image.tmdb.org/t/p/w500/${detailsFilm.poster_path}`}
           alt=""
-          width={300}
-          height={300}
+          
         />
         <div>
           <p>{detailsFilm.original_title}</p>
@@ -35,6 +34,11 @@ export default function MovieDetails() {
           <p></p>
           <p>{}</p>
         </div>
+        <ul>
+          <li><Link to="movies/:movieId/cast">Cast</Link></li>
+          <li><Link to="movies/:movieId/reviews">Reviews</Link></li>
+        </ul>
+        
       </div>
     </div>
   );
