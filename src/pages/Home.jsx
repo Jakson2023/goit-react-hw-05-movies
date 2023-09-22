@@ -1,7 +1,7 @@
 import { serviceReq } from 'api';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { ListFilm } from './pages.styled';
 export default function Home() {
   const [listFilms, setListFilms] = useState('');
 
@@ -20,14 +20,14 @@ export default function Home() {
   return (
     <div>
       <p>Trending today</p>
-      <ul>
+      <ListFilm>
         {listFilms &&
           listFilms.results.map(({ title, id }) => (
             <Link key={id} to={`movies/${id}`}>
               {title}{' '}
             </Link>
           ))}
-      </ul>
+      </ListFilm>
     </div>
   );
 }
