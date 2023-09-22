@@ -22,3 +22,14 @@ export const fetchMovieId = async movie_id => {
 
   return resp.data;
 };
+
+
+export const fetchCast = async movie_id => {
+  const resp = await axios.get(`movie/${movie_id}/credits`, {
+    params: {
+      api_key: '10a8ded0dacd9995ca514d21c19cfb90',
+    },
+  });
+
+  return resp.data;
+};
