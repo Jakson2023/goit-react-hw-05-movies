@@ -12,7 +12,7 @@ export default function Movie() {
         const searchListFilm = await fetchSearch(searchParams);
         setFoundMovies(searchListFilm);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching', error);
       }
     }
     SearchMovie();

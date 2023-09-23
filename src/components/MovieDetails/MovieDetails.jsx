@@ -22,7 +22,7 @@ export default function MovieDetails() {
         const movieData = await fetchMovieId(movieId);
         setDetailsFilm(movieData);
       } catch (error) {
-        console.error('Error fetching images:', error);
+        console.error('Error fetching', error);
       } finally {
       }
     }

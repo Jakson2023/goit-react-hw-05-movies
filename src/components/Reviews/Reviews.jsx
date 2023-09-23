@@ -12,7 +12,7 @@ export default function Review() {
         const reviewData = await fetchReview(movieId);
         setReviewDataInfo(reviewData);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching', error);
       }
     }
     movieReview();
@@ -20,7 +20,7 @@ export default function Review() {
 
   return (
     <div>
-      {reviewDataInfo && <p>Eror</p>}
+      {reviewDataInfo.total_results === 0 && <p>Eror</p>}
       <ul>
         {reviewDataInfo &&
           reviewDataInfo.results.map(({ id, author, content }) => (

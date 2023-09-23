@@ -12,7 +12,7 @@ export default function Home() {
         const filmTrendData = await serviceReq();
         setListFilms(filmTrendData);
       } catch (error) {
-        console.error('Error fetching images:', error);
+        console.error('Error fetching', error);
       } finally {
       }
     }
