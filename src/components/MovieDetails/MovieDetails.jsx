@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchMovieId } from 'api';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import {
   WrapperContent,
   GenresStyle,
@@ -9,6 +9,7 @@ import {
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [detailsFilm, setDetailsFilm] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
     async function movieInfo() {
@@ -27,7 +28,7 @@ export default function MovieDetails() {
   return (
     <div>
       <ul>
-        <Link to="/">GoBack</Link>
+        <Link to={location.state.from}>GoBack</Link>
       </ul>
       <WrapperContent>
         <img
