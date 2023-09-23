@@ -1,11 +1,11 @@
 import { fetchSearch } from 'api';
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { ListFilm } from './pages.styled';
 export default function Movie() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [foundMovies, setFoundMovies] = useState('');
-
+  const location = useLocation();
   useEffect(() => {
     async function SearchMovie() {
       try {
@@ -33,7 +33,7 @@ export default function Movie() {
       <ListFilm>
         {foundMovies &&
           foundMovies.results.map(({ title, id }) => (
-            <Link key={id} to={`/movies/${id}`}>
+            <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
               {title}{' '}
             </Link>
           ))}

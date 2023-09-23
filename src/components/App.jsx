@@ -2,9 +2,11 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { NavLinkApp } from 'pages/pages.styled';
 import Movie from 'pages/Movie';
 import Home from 'pages/Home';
-import MovieDetails from './MovieDetails/MovieDetails';
+
 import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
+import { lazy } from 'react';
+const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
 export const App = () => {
   return (
     <div>

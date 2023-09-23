@@ -12,7 +12,6 @@ export const serviceReq = async () => {
   return resp.data;
 };
 
-// 10a8ded0dacd9995ca514d21c19cfb90
 export const fetchMovieId = async movie_id => {
   const resp = await axios.get(`movie/${movie_id}`, {
     params: {
