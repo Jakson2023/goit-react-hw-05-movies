@@ -32,40 +32,39 @@ export default function MovieDetails() {
 
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ul>
-          <Link to={backLinkRef.current}>GoBack</Link>
-        </ul>
-        <WrapperContent>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${detailsFilm.poster_path}`}
-            alt=""
-            height={500}
-          />
-          <OwerviewWrap>
-            <li>
-              <GenresTitleStyle>
-                {detailsFilm.original_title} ({detailsFilm.title})
-              </GenresTitleStyle>
-            </li>
-            <li>
-              <p>User Score: {score} %</p>
-            </li>
-            <li>
-              <GenresTitleStyle>Owerview</GenresTitleStyle>
-              <p>{detailsFilm.overview}</p>
-            </li>
+      <ul>
+        <Link to={backLinkRef.current}>GoBack</Link>
+      </ul>
+      <WrapperContent>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${detailsFilm.poster_path}`}
+          alt=""
+          height={500}
+        />
+        <OwerviewWrap>
+          <li>
+            <GenresTitleStyle>
+              {detailsFilm.original_title} ({detailsFilm.title})
+            </GenresTitleStyle>
+          </li>
+          <li>
+            <p>User Score: {score} %</p>
+          </li>
+          <li>
+            <GenresTitleStyle>Owerview</GenresTitleStyle>
+            <p>{detailsFilm.overview}</p>
+          </li>
 
-            <GenresTitleStyle>Genres</GenresTitleStyle>
-            <GenresStyle>
-              {detailsFilm &&
-                detailsFilm.genres.map(item => (
-                  <GenresTextStyle key={item.id}>{item.name}</GenresTextStyle>
-                ))}
-            </GenresStyle>
-          </OwerviewWrap>
-        </WrapperContent>
-      </Suspense>
+          <GenresTitleStyle>Genres</GenresTitleStyle>
+          <GenresStyle>
+            {detailsFilm &&
+              detailsFilm.genres.map(item => (
+                <GenresTextStyle key={item.id}>{item.name}</GenresTextStyle>
+              ))}
+          </GenresStyle>
+        </OwerviewWrap>
+      </WrapperContent>
+
       <p>Additional information</p>
 
       <ul>
@@ -76,7 +75,9 @@ export default function MovieDetails() {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
