@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { fetchMovieId } from 'api';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import {
   WrapperContent,
   GenresStyle,
