@@ -20,7 +20,7 @@ export const TitleTrending = styled.p`
 `;
 
 export const WrapperContainer = styled.div`
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
   border: 3px solid lightgreen;
   padding: 20px;
