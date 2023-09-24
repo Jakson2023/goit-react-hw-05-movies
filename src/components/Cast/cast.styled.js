@@ -22,3 +22,7 @@ export const ContainerCast = styled.ul`
   gap: 10px;
   padding: 0;
 `;
+export const ActorTitle = styled.p`
+  font-size: 16px;
+  font-weight: 600;
+`;

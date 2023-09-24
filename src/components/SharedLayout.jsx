@@ -1,11 +1,13 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { WrapNavLink, WrapperContainer } from 'pages/pages.styled';
+import { Suspense } from 'react';
 import styled from 'styled-components';
+import { WrapNavLink, WrapperContainer } from 'pages/pages.styled';
+
 const StyledLink = styled(NavLink)`
   color: black;
 
   &.active {
-    color: orange;
+    color: #ff5500;
   }
   text-decoration: none;
   font-size: 30px;
@@ -21,7 +23,9 @@ export default function SharedLayout() {
           <StyledLink to="/movies">Movies</StyledLink>
         </li>
       </WrapNavLink>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </WrapperContainer>
   );
 }

@@ -1,11 +1,11 @@
-import { fetchReview } from 'api';
+import { fetchReview } from 'service/api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { StyledAuthor } from './reviews.styled';
 export default function Review() {
   const { movieId } = useParams();
   const [reviewDataInfo, setReviewDataInfo] = useState('');
-  console.log(reviewDataInfo);
+
   useEffect(() => {
     async function movieReview() {
       try {
@@ -20,12 +20,14 @@ export default function Review() {
 
   return (
     <div>
-      {reviewDataInfo.total_results === 0 && <p>Eror</p>}
+      {reviewDataInfo.total_results === 0 && (
+        <p>We don't have any reviews for this movie.</p>
+      )}
       <ul>
         {reviewDataInfo &&
           reviewDataInfo.results.map(({ id, author, content }) => (
             <li key={id}>
-              <p>{author}</p>
+              <StyledAuthor>{author}</StyledAuthor>
               <p>{content}</p>
             </li>
           ))}

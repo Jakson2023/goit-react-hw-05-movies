@@ -1,4 +1,4 @@
-import { fetchCast } from 'api';
+import { fetchCast } from 'service/api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -6,7 +6,11 @@ import {
   ImgActor,
   ContainerCast,
   CardActor,
+  ActorTitle,
 } from './cast.styled';
+
+const localImagePath = require('../images/ukraine.jpg');
+
 export default function Cast() {
   const { movieId } = useParams();
   const [castDataInfo, setCastDataInfo] = useState('');
@@ -15,7 +19,6 @@ export default function Cast() {
       try {
         const castData = await fetchCast(movieId);
         setCastDataInfo(castData);
-        console.log(castData);
       } catch (error) {
         console.error('Error fetching', error);
       }
@@ -32,12 +35,16 @@ export default function Cast() {
               <CardActor key={id}>
                 <ContainerImg>
                   <ImgActor
-                    src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-                    alt=""
+                    src={
+                      profile_path
+                        ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                        : `${localImagePath}`
+                    }
+                    alt="No Images"
                   />
                 </ContainerImg>
                 <li>
-                  <p>{original_name}</p>
+                  <ActorTitle>{original_name}</ActorTitle>
                   <p>{character}</p>
                 </li>
               </CardActor>

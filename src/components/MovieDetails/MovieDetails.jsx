@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { fetchMovieId } from 'api';
+import { fetchMovieId } from 'service/api';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import {
@@ -8,14 +8,16 @@ import {
   GenresTextStyle,
   GenresTitleStyle,
   OwerviewWrap,
+  GoBackLink,
+  TitleStyle,
 } from './movieDetails.styled';
-import { Suspense } from 'react';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [detailsFilm, setDetailsFilm] = useState('');
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from);
+
   useEffect(() => {
     async function movieInfo() {
       try {
@@ -29,12 +31,14 @@ export default function MovieDetails() {
     movieInfo();
   }, [movieId]);
   const score = Math.round(detailsFilm.vote_average * 10);
+  const date = new Date(detailsFilm.release_date);
+  const year = date.getFullYear();
 
   return (
     <div>
-      <ul>
-        <Link to={backLinkRef.current}>GoBack</Link>
-      </ul>
+      <Link to={backLinkRef.current}>
+        <GoBackLink>GoBack</GoBackLink>
+      </Link>
       <WrapperContent>
         <img
           src={`https://image.tmdb.org/t/p/w500/${detailsFilm.poster_path}`}
@@ -43,9 +47,9 @@ export default function MovieDetails() {
         />
         <OwerviewWrap>
           <li>
-            <GenresTitleStyle>
-              {detailsFilm.original_title} ({detailsFilm.title})
-            </GenresTitleStyle>
+            <TitleStyle>
+              {detailsFilm.original_title} ({year})
+            </TitleStyle>
           </li>
           <li>
             <p>User Score: {score} %</p>
@@ -54,7 +58,6 @@ export default function MovieDetails() {
             <GenresTitleStyle>Owerview</GenresTitleStyle>
             <p>{detailsFilm.overview}</p>
           </li>
-
           <GenresTitleStyle>Genres</GenresTitleStyle>
           <GenresStyle>
             {detailsFilm &&
@@ -64,9 +67,7 @@ export default function MovieDetails() {
           </GenresStyle>
         </OwerviewWrap>
       </WrapperContent>
-
-      <p>Additional information</p>
-
+      <GenresTitleStyle>Additional information</GenresTitleStyle>
       <ul>
         <li>
           <Link to="cast">Cast</Link>
@@ -75,9 +76,7 @@ export default function MovieDetails() {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </div>
   );
 }

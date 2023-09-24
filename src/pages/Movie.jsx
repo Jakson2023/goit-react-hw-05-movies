@@ -1,11 +1,13 @@
-import { fetchSearch } from 'api';
+import { fetchSearch } from 'service/api';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { ListFilm } from './pages.styled';
+
 export default function Movie() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [foundMovies, setFoundMovies] = useState('');
   const location = useLocation();
+
   useEffect(() => {
     async function SearchMovie() {
       try {

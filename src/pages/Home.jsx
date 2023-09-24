@@ -1,4 +1,4 @@
-import { serviceReq } from 'api';
+import { serviceReq } from 'service/api';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ListFilm, TitleTrending } from './pages.styled';

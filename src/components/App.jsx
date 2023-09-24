@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './SharedLayout';
 import { lazy } from 'react';
 
+import SharedLayout from './SharedLayout';
 import Movie from 'pages/Movie';
 import Home from 'pages/Home';
 
